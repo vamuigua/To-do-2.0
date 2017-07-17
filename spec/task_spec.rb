@@ -7,6 +7,10 @@ describe(Task) do
       test_task = Task.create({:description => "task", :list_id => test_list.id})
       expect(test_task.list()).to(eq(test_list))
     end
+    it("validates presence of description") do
+      task = Task.new({:description => ""})
+      expect(task.save()).to(eq(false))
+    end
     describe(".not_done") do
       it("returns the not done tasks") do
         not_done_task1 = Task.create({:description => "gotta do it", :done => false})
