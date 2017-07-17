@@ -5,6 +5,7 @@ require("rspec")
 require("pg")
 require("sinatra/activerecord")
 require("task")
+require("list")
 
 
 #set up RSpec to clean the database between test runs
@@ -14,4 +15,8 @@ RSpec.configure do |config|
       #destroy method made to remove entries in the DB
       task.destroy()
     end
+    List.all().each do |list|
+      list.destroy()
+    end
   end
+end
