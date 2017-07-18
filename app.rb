@@ -37,3 +37,12 @@ patch("/tasks/:id") do
   @tasks = Task.all()
   erb(:index)
 end
+
+delete('/tasks/:id') do
+  @task = Task.find(params.fetch("id").to_i())
+  if @task.destroy()
+    redirect("/tasks")
+  else
+    erb(:task)
+  end
+end
