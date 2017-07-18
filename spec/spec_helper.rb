@@ -1,12 +1,15 @@
 ENV['RACK_ENV'] = 'test'
 
-#require the same files and gems
-require("rspec")
-require("pg")
-require("sinatra/activerecord")
-require("task")
-require("list")
+#gems in the :test group will only be loaded by spec_helper
+require("bundler/setup")
+Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
+Bundler.require(:default, :test)
+set(:root, Dir.pwd())
 
+require('capybara/rspec')
+Capybara.app = Sinatra::Application
+set(:show_exceptions, false)
+require('./app')
 
 #set up RSpec to clean the database between test runs
 RSpec.configure do |config|
