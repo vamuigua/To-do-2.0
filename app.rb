@@ -1,9 +1,8 @@
-require("sinatra")
-require("sinatra/reloader")
-require("sinatra/activerecord")
-also_reload("lib/**/*.rb")
-require("./lib/task")
-require("pg")
+#used bundler to require all gems
+require("bundler/setup")
+#__FILE__ refers to the current file, and File.dirname(__FILE__) will give the current directory
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
+Bundler.require(:default)
 
 get('/') do
   @tasks = Task.all()
