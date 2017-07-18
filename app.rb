@@ -10,13 +10,14 @@ get('/') do
 end
 
 #post request to post new_task created, save task and redirect to new_task
-post ('/tasks')
-@new_task = Task.new(params.fetch("task"))
-if @new_task.save()
-  redirect("/tasks/".concat(@new_task.id().to_s()))
-else
-  erb(:index)
-end
+post ('/tasks') do
+  description = params.fetch( "description")
+  @new_task = Task.new({:description => "description"})
+  if @new_task.save()
+    redirect("/tasks/".concat(@new_task.id().to_s()))
+  else
+    erb(:index)
+  end
 end
 
 #get the new_task created
