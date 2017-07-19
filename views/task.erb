@@ -1,0 +1,11 @@
+<% if @list.tasks().any?() %>
+    <div class="collection">
+        <% @list.tasks().each() do |task| %>
+            <li class="collection-item">
+                <%= task.description() %>
+            </li>
+            <% end %>
+    </div>
+    <% else %>
+        <p class="center-align">There are no tasks on this list!</p>
+        <% end %>
