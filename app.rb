@@ -12,7 +12,7 @@ end
 #post request to post new_task created, save task and redirect to new_task
 post ('/tasks') do
   description = params.fetch( "description")
-  @new_task = Task.new({:description => "description"})
+  @new_task = Task.new({:description => "description", :done => false})
   if @new_task.save()
     redirect("/tasks/".concat(@new_task.id().to_s()))
   else
